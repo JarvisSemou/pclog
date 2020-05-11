@@ -39,11 +39,11 @@ goto main
     for %%t in ("!targetFolder!") do (
         for /f "usebackq delims=`" %%x in ("!file!") do (
             for /f "tokens=3,6,7,8,9" %%i in ("%%x") do (
-                echo %%x 1>> "%%~dpnt\%%i.log"
+                echo %%x 1>> "%%~ft\%%i.log"
                 if "%%j"=="ActivityManager:" (
                     if "%%k"=="Start" (
                         if "%%l"=="proc" (
-                            echo %%m >> "%%~dpnt\pid_proces.txt"
+                            echo %%m >> "%%~ft\pid_proces.txt"
                         )
                     )
                 )
