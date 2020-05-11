@@ -1,4 +1,7 @@
 @echo off
+rem version: v1.0
+rem author: Jarvis Semou
+rem date: 2020.5.11
 chcp 65001 >nul
 rem if "%~2"=="" (
 rem	setlocal enableDelayedExpansion
