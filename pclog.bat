@@ -13,13 +13,13 @@ goto main
 :main
 	if "%~1" == "" (
         echo=
-        set a="将 logcat 打出的日志文件通过 PID 对日志进行分类，且尽量生成一个"
+        set a=将 logcat 打出的日志文件通过 PID 对日志进行分类，且尽量生成一个
         echo !a!
-        set b="PID 与程序名的映射列表(pid_proces.txt), 指出 PID 与程序名的对应"
+        set b=PID 与程序名的映射列表^(pid_proces.txt^), 指出 PID 与程序名的对应
         echo !b!
-        set c="关系。生成的结果默认放在日志文件所在目录的 log_divided_by_pid 目录内。"
+        set c=关系。生成的结果默认放在日志文件所在目录的 log_divided_by_pid 目录内。
         echo !c!
-        set d="注意：文件名和目录名不要包含特殊字符，否则脚本会出错，建议只用英文、数字和下划线！"
+        set d=注意：文件名和目录名不要包含特殊字符，否则脚本会出错，建议只用字母、数字和下划线！
         echo !d!
         echo=
         echo pclog  ^<log file^>    ^[target folder^]
@@ -40,6 +40,8 @@ goto main
     md "!targetFolder!"
     echo 日志处理中...
     for %%t in ("!targetFolder!") do (
+        echo pid^:process_name^/user_name >> "%%~ft\pid_proces.txt"
+        echo ------------------------------------------ >> "%%~ft\pid_proces.txt"
         for /f "usebackq delims=`" %%x in ("!file!") do (
             for /f "tokens=3,6,7,8,9" %%i in ("%%x") do (
                 echo %%x 1>> "%%~ft\%%i.log"
