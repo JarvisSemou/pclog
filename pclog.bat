@@ -55,12 +55,14 @@ goto main
         @rem pclog  logname.log
         set file=%~1
     )
-    @rem 删除旧日志
-    if exist "%~dp0!targetFolder!" (
-        rd /s /q "%~dp0!targetFolder!"
-    )
-    md "%~dp0!targetFolder!"
     echo 日志处理中...
+    @rem 删除旧日志
+    if exist "!targetFolder!" (
+        rd /s /q "!targetFolder!"
+        choice /n /t 2 /d y 1>nul
+    )
+    md "!targetFolder!"
+    @rem 处理日志
     for %%t in ("!targetFolder!") do (
         @rem 按 PID 划分日志
         echo pid^:process_name^/user_name >> "%%~ft\pid_proces.txt"
@@ -120,7 +122,7 @@ goto eof
                 )
             )
             if "!isIt!"=="true" (
-                echo %%l 1>>"%~f3\闭环程序日志.log"
+                echo %%l 1>>"%~f3\闭环程序协议日志.log"
             )
         )
     )
